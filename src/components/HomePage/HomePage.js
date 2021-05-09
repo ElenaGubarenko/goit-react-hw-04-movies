@@ -1,7 +1,6 @@
 import { Component } from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 import Api from '../Api';
-// import MovieDetailsPage from '../MovieDetailsPage';
 import routes from '../../routes';
 
 const api = new Api();
@@ -29,6 +28,7 @@ class HomePage extends Component {
   render() {
     // console.log(this.props);
     const { films } = this.state;
+    // console.log(this.state);
     return (
       <div>
         <h1>Trending today</h1>
@@ -37,7 +37,7 @@ class HomePage extends Component {
             <li key={film.id}>
               <NavLink
                 to={{
-                  pathname: `${routes.movies}${this.props.match.url}:${film.id}`,
+                  pathname: `${routes.movies}${this.props.match.url}${film.id}`,
                   state: {
                     from: this.props.location,
                   },

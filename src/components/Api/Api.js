@@ -27,6 +27,22 @@ class Api extends Component {
       )
       .then(answer => answer);
   };
+
+  getReviews = id => {
+    return axios
+      .get(
+        `https://api.themoviedb.org/3/movie/${id}/reviews?api_key=3a340623e63e67af3a950ef535fe576d`,
+      )
+      .then(answer => answer);
+  };
+
+  findFilm = query => {
+    return axios
+      .get(
+        `https://api.themoviedb.org/3/search/movie?api_key=3a340623e63e67af3a950ef535fe576d&language=en-US&query=${query}`,
+      )
+      .then(answer => answer);
+  };
 }
 
 export default Api;

@@ -1,7 +1,8 @@
 import { Component } from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import Api from '../Api';
 import Cast from '../Cast';
+import Reviews from '../Reviews';
 import routes from '../../routes';
 import { NavLink } from 'react-router-dom';
 
@@ -38,31 +39,32 @@ class MovieDetailsPage extends Component {
   };
 
   render() {
-    // const id = this.props.match.params.movieId;
-    // console.log(this.state);
     const { title } = this.state;
     return (
-      <div>
-        <button type="button" onClick={this.goBack}>
-          Go back
-        </button>
-        <ul>
-          <li>{title}</li>
-        </ul>
-        <h2>Additional info</h2>
-        <NavLink to={`${this.props.match.url}${routes.cast}`}>Cast</NavLink>
+      <>
+        <div>
+          <button type="button" onClick={this.goBack}>
+            Go back
+          </button>
+          <ul>
+            <li>{title}</li>
+          </ul>
+          <h2>Additional info</h2>
+          <NavLink to={`${this.props.match.url}${routes.cast}`}>Cast</NavLink>
+          <NavLink to={`${this.props.match.url}${routes.reviews}`}>
+            Reviews
+          </NavLink>
+        </div>
         <Route
-          path="/movies/:movieId/cast"
-          exact
-          render={() => <h1>cast</h1>}
+          path={`${this.props.match.path}${routes.cast}`}
+          component={Cast}
         />
-      </div>
+        <Route
+          path={`${this.props.match.path}${routes.reviews}`}
+          component={Reviews}
+        />
+      </>
     );
   }
 }
-
 export default MovieDetailsPage;
-
-{
-  /* <NavLink to>Reviews<NavLink/> */
-}

@@ -3,4 +3,5 @@ export default {
   movies: '/movies',
   movieDetailsPage: '/movies/:movieId',
   cast: '/cast',
+  reviews: '/reviews',
 };
