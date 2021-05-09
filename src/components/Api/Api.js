@@ -41,7 +41,7 @@ class Api extends Component {
       .get(
         `https://api.themoviedb.org/3/search/movie?api_key=3a340623e63e67af3a950ef535fe576d&language=en-US&query=${query}`,
       )
-      .then(answer => answer);
+      .then(answer => answer.data.results);
   };
 }
 
