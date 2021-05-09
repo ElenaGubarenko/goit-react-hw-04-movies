@@ -10,8 +10,7 @@ const api = new Api();
 
 class MovieDetailsPage extends Component {
   state = {
-    title: '',
-    all: '',
+    filmData: '',
   };
 
   componentDidMount() {
@@ -24,7 +23,7 @@ class MovieDetailsPage extends Component {
       .then(answer => {
         this.setState({
           title: answer.data.title,
-          all: answer,
+          filmData: answer.data,
         });
       })
       .catch(error => console.log(error));
@@ -39,7 +38,17 @@ class MovieDetailsPage extends Component {
   };
 
   render() {
-    const { title } = this.state;
+    // console.log(this.state);
+
+    const {
+      poster_path,
+      title,
+      release_date,
+      vote_average,
+      overview,
+      genres,
+    } = this.state.filmData;
+    const voteAverage = Number(vote_average) * 10;
     return (
       <>
         <div>
@@ -47,13 +56,42 @@ class MovieDetailsPage extends Component {
             Go back
           </button>
           <ul>
-            <li>{title}</li>
+            <img
+              src={`https://image.tmdb.org/t/p/original${poster_path}`}
+              alt={title}
+            ></img>
+            <li>
+              <h3>
+                {title}
+                {`(${release_date})`}
+              </h3>
+              <p>User Score: {voteAverage}%</p>
+              <h3>Overview:</h3> <p>{overview}</p>
+            </li>
           </ul>
-          <h2>Additional info</h2>
-          <NavLink to={`${this.props.match.url}${routes.cast}`}>Cast</NavLink>
-          <NavLink to={`${this.props.match.url}${routes.reviews}`}>
-            Reviews
-          </NavLink>
+          <ul>
+            <h3>Genres:</h3>
+            {genres ? (
+              genres.map(genre => <li key={genre.name}>{genre.name}</li>)
+            ) : (
+              <p>There is no genres</p>
+            )}
+          </ul>
+          <h2 className="additionalInfoTitle">Additional info</h2>
+          <div className="additionalInfo">
+            <NavLink
+              to={`${this.props.match.url}${routes.cast}`}
+              className="additionalInfoNavink"
+            >
+              Cast
+            </NavLink>
+            <NavLink
+              to={`${this.props.match.url}${routes.reviews}`}
+              className="additionalInfoNavink"
+            >
+              Reviews
+            </NavLink>
+          </div>
         </div>
         <Route
           path={`${this.props.match.path}${routes.cast}`}

@@ -26,9 +26,8 @@ class HomePage extends Component {
   };
 
   render() {
-    // console.log(this.props);
     const { films } = this.state;
-    // console.log(this.state);
+
     return (
       <div>
         <h1>Trending today</h1>

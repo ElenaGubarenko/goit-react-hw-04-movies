@@ -5,9 +5,13 @@ import routes from '../../routes';
 class Header extends Component {
   render() {
     return (
-      <div>
-        <NavLink to={routes.homepage}>Home</NavLink>
-        <NavLink to={routes.movies}>Movies</NavLink>
+      <div className="header">
+        <NavLink to={routes.homepage} className="headerNavlink">
+          Home
+        </NavLink>
+        <NavLink to={routes.movies} className="headerNavlink">
+          Movies
+        </NavLink>
       </div>
     );
   }

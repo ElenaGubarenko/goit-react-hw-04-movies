@@ -10,10 +10,12 @@ function App() {
     <BrowserRouter>
       <Header />
       <Switch>
-        <Route path={routes.homepage} exact component={HomePage} />
-        <Route path={routes.movieDetailsPage} component={MovieDetailsPage} />
-        <Route path={routes.movies} exact component={MoviesPage} />
-        {/* <Route component={HomePage} /> */}
+        <div className="container">
+          <Route path={routes.homepage} exact component={HomePage} />
+          <Route path={routes.movieDetailsPage} component={MovieDetailsPage} />
+          <Route path={routes.movies} exact component={MoviesPage} />
+          {/* <Route component={HomePage} /> */}
+        </div>
       </Switch>
     </BrowserRouter>
   );

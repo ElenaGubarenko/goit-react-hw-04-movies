@@ -16,42 +16,51 @@ class MoviesPage extends Component {
     });
   };
 
-  findFilm = query => {
+  findFilm = e => {
+    e.preventDefault();
     api
-      .findFilm(query)
+      .findFilm(this.state.inputValue)
       .then(answer =>
         this.setState({
           foundedFilms: [...answer],
         }),
       )
       .catch(error => console.log(error));
-    // <Route
-    //   path={`${this.props.match.path}${this.props.location.search}`}
-    // ></Route>;
 
     // const { history, location } = this.props;
     // history.push(location.state.from);
-
-    // console.log(this.state.foundedFilms);
   };
 
   render() {
-    console.log(this.props);
+    // console.log(this.props);
+    console.log(this.state);
     return (
       <div>
-        <input
-          value={this.state.inputValue}
-          type="input"
-          onChange={this.changeStateValue}
-        ></input>
-        <NavLink to={`${this.props.match.url}?query=${this.state.inputValue}`}>
-          <button
-            onClick={() => this.findFilm(this.state.inputValue)}
-            type="button"
+        <form onSubmit={this.findFilm}>
+          {/* <NavLink
+            to={{
+              pathname: `/movies?query=${this.state.inputValue}`,
+              state: {
+                from: this.props.location,
+              },
+            }}
           >
-            Search
-          </button>
-        </NavLink>
+            <input
+              value={this.state.inputValue}
+              type="input"
+              onChange={() => this.changeStateValue}
+            ></input>
+            <span>Search</span>
+          </NavLink> */}
+
+          <NavLink to={`/movies?query=${this.state.inputValue}`}>
+            <input
+              type="input"
+              value={this.state.inputValue}
+              onChange={this.changeStateValue}
+            ></input>
+          </NavLink>
+        </form>
         <ul>
           {this.state.foundedFilms.map(film => (
             <li key={film.id}>
@@ -62,7 +71,8 @@ class MoviesPage extends Component {
           ))}
         </ul>
         <Route
-          path={`${this.props.match.path}${this.props.location.search}`}
+          path={`/movies?query=${this.state.inputValue}`}
+          // render={props => console.log(props)}
         ></Route>
       </div>
     );
