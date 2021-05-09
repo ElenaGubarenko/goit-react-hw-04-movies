@@ -48,6 +48,7 @@ class MovieDetailsPage extends Component {
       overview,
       genres,
     } = this.state.filmData;
+    
     const voteAverage = Number(vote_average) * 10;
     return (
       <>

@@ -18,13 +18,14 @@ class Reviews extends Component {
     api
       .getReviews(id)
       .then(answer =>
-        answer.data.total_results === 0
-          ? this.setState({
-              noReview: 'There is no review',
-            })
-          : this.setState({
-              reviews: [...answer.data.results],
-            }),
+        // answer.data.total_results === 0
+        //   ? this.setState({
+        //       noReview: 'There is no review',
+        //     })
+        //   :
+        this.setState({
+          reviews: [...answer.data.results],
+        }),
       )
       .catch(error => console.log(error));
   };
@@ -33,17 +34,21 @@ class Reviews extends Component {
     // console.log(this.state);
     return (
       <div>
-        <ul>
-          {this.state.noReview ? (
-            <p>{this.state.noReview}</p>
-          ) : (
-            this.state.reviews.map(review => (
-              <li key={review.author}>
-                {review.author}: <p>{review.content}</p>
-              </li>
-            ))
-          )}
-        </ul>
+        {this.state.reviews.length > 0 ? (
+          <ul>
+            {this.state.noReview ? (
+              <p>{this.state.noReview}</p>
+            ) : (
+              this.state.reviews.map(review => (
+                <li key={review.author}>
+                  {review.author}: <p>{review.content}</p>
+                </li>
+              ))
+            )}
+          </ul>
+        ) : (
+          <p>No reviews</p>
+        )}
       </div>
     );
   }

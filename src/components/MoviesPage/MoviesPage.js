@@ -32,8 +32,9 @@ class MoviesPage extends Component {
   };
 
   render() {
-    // console.log(this.props);
-    console.log(this.state);
+    console.log(this.props);
+    // console.log(this.state);
+    // console.log(this.state.inputValue);
     return (
       <div>
         <form onSubmit={this.findFilm}>
@@ -61,6 +62,7 @@ class MoviesPage extends Component {
             ></input>
           </NavLink>
         </form>
+
         <ul>
           {this.state.foundedFilms.map(film => (
             <li key={film.id}>
@@ -70,10 +72,7 @@ class MoviesPage extends Component {
             </li>
           ))}
         </ul>
-        <Route
-          path={`/movies?query=${this.state.inputValue}`}
-          // render={props => console.log(props)}
-        ></Route>
+        <Route path={`/movies?query=query`}></Route>
       </div>
     );
   }
