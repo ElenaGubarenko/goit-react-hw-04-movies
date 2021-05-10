@@ -48,7 +48,7 @@ class MovieDetailsPage extends Component {
       overview,
       genres,
     } = this.state.filmData;
-    
+
     const voteAverage = Number(vote_average) * 10;
     return (
       <>
@@ -81,13 +81,25 @@ class MovieDetailsPage extends Component {
           <h2 className="additionalInfoTitle">Additional info</h2>
           <div className="additionalInfo">
             <NavLink
-              to={`${this.props.match.url}${routes.cast}`}
+              to={{
+                pathname: `${this.props.match.url}${routes.cast}`,
+                state: {
+                  from: this.props.location,
+                },
+              }}
+              // to={`${this.props.match.url}${routes.cast}`}
               className="additionalInfoNavink"
             >
               Cast
             </NavLink>
             <NavLink
-              to={`${this.props.match.url}${routes.reviews}`}
+              to={{
+                pathname: `${this.props.match.url}${routes.reviews}`,
+                state: {
+                  from: this.props.location,
+                },
+              }}
+              // to={`${this.props.match.url}${routes.reviews}`}
               className="additionalInfoNavink"
             >
               Reviews

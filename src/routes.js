@@ -4,5 +4,4 @@ export default {
   movieDetailsPage: '/movies/:movieId',
   cast: '/cast',
   reviews: '/reviews',
-  search: '?query=:query',
 };
