@@ -30,7 +30,12 @@ class MoviesPage extends Component {
       .catch(error => console.log(error));
 
     // const { history, location } = this.props;
-    // history.push(location.state.from);
+    this.props.history.push(`?search=${this.state.inputValue}`);
+    // if (this.props.location.state) {
+    //   this.props.history.push(this.props.location.state.from);
+    // }
+
+    // this.props.location.state.push(this.props.history.location);
   };
 
   render() {
@@ -42,16 +47,18 @@ class MoviesPage extends Component {
         <form onSubmit={this.findFilm}>
           <NavLink
             to={{
+              pathname: `${this.props.match.url}`,
               state: {
                 from: this.props.location,
-                pathname: `${this.props.match.url}?query=${this.state.inputValue}`,
               },
             }}
             // to={`${this.props.match.url}?query=${this.state.inputValue}`}
           >
             <input type="input" onChange={this.changeStateValue}></input>
           </NavLink>
-          <Route path={`${routes.movies}${routes.search}`}></Route>
+          <Route
+            path={`${this.props.match.path}?query=${this.state.inputValue}`}
+          ></Route>
         </form>
         <ul>
           {this.state.foundedFilms.map(film => (
