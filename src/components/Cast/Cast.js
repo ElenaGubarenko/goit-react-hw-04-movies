@@ -25,7 +25,7 @@ class Cast extends Component {
   };
 
   render() {
-    console.log(this.state.cast);
+    // console.log(this.state.cast);
     return (
       <div>
         <ul>

@@ -31,7 +31,6 @@ function App() {
               component={MovieDetailsPage}
             />
             <Route path={routes.movies} exact component={MoviesPage} />
-            {/* <Route component={HomePage} /> */}
           </div>
         </Switch>
       </Suspense>

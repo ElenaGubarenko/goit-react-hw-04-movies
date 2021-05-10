@@ -1,6 +1,8 @@
 import { Component } from 'react';
 import { NavLink, Route } from 'react-router-dom';
 import Api from '../Api';
+// import Cast from '../Cast';
+import routes from '../../routes';
 
 const api = new Api();
 
@@ -38,31 +40,19 @@ class MoviesPage extends Component {
     return (
       <div>
         <form onSubmit={this.findFilm}>
-          {/* <NavLink
+          <NavLink
             to={{
-              pathname: `/movies?query=${this.state.inputValue}`,
               state: {
                 from: this.props.location,
+                pathname: `${this.props.match.url}?query=${this.state.inputValue}`,
               },
             }}
+            // to={`${this.props.match.url}?query=${this.state.inputValue}`}
           >
-            <input
-              value={this.state.inputValue}
-              type="input"
-              onChange={() => this.changeStateValue}
-            ></input>
-            <span>Search</span>
-          </NavLink> */}
-
-          <NavLink to={`/movies?query=${this.state.inputValue}`}>
-            <input
-              type="input"
-              value={this.state.inputValue}
-              onChange={this.changeStateValue}
-            ></input>
+            <input type="input" onChange={this.changeStateValue}></input>
           </NavLink>
+          <Route path={`${routes.movies}${routes.search}`}></Route>
         </form>
-
         <ul>
           {this.state.foundedFilms.map(film => (
             <li key={film.id}>
@@ -72,7 +62,6 @@ class MoviesPage extends Component {
             </li>
           ))}
         </ul>
-        <Route path={`/movies?query=query`}></Route>
       </div>
     );
   }
